@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+char* resize(const char* str, unsigned size, unsigned new_size)
+{
+	char* str2 = new char[new_size];
+	if (new_size > size) {
+		for (int i = 0; i < size; i++)
+		{
+			str2[i] = str[i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < new_size; i++) 
+		{
+			str2[i] = str[i];
+		}
+	}
+	delete[] str;
+	return str2;
+}
+
+
+char* getline()
+{
+	char ch;
+	char* str;
+	unsigned size = 0;
+	str = new char[50];
+	if (!(cin.get(ch)))
+	{
+		return str;
+	}
+	unsigned current_size = 50;
+	while ((ch != '\n') && (ch != 0) && (ch != '\0'))
+	{
+		str[size++] = ch;
+		cin.get(ch);
+		if ((size % 50) == 0) {
+			str = resize(str, current_size, current_size + 50);
+			current_size += 50;
+		}
+	}
+	*(str + (size)) = '\0';
+	return str;
+}
+
+
+
+
+int main()
+{
+	char x;
+	getline();
+	return 0;
+}
+
+	
