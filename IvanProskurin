@@ -29,19 +29,19 @@ char* getline()
 	char ch;
 	char* str;
 	unsigned size = 0;
-	str = new char[50];
+	unsigned current_size = 50;
+	str = new char[current_size];
 	if (!(cin.get(ch)))
 	{
 		return str;
 	}
-	unsigned current_size = 50;
-	while ((ch != '\n') && (ch != 0) && (ch != '\0'))
+	while (ch && (ch != '\n'))
 	{
 		str[size++] = ch;
-		cin.get(ch);
 		if ((size % 50) == 0) {
 			str = resize(str, current_size, current_size + 50);
 			current_size += 50;
+			cin.get(ch);
 		}
 	}
 	*(str + (size)) = '\0';
@@ -53,7 +53,6 @@ char* getline()
 
 int main()
 {
-	char x;
 	getline();
 	return 0;
 }
